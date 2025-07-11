@@ -1,7 +1,7 @@
 name: Merge Fonts
 
 on:
-  workflow_dispatch:  # Manually trigger
+  workflow_dispatch:  # Manual trigger
   push:
     branches: [ main ]
     paths: [ 'fonts/**' ]  # Run only if font files change
@@ -28,7 +28,7 @@ jobs:
             fonts/AdorshoTimesMerged.ttf
 
       - name: Upload merged font
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Updated to v4
         with:
           name: merged-font
           path: fonts/AdorshoTimesMerged.ttf
