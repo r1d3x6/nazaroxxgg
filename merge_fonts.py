@@ -23,4 +23,4 @@ if __name__ == "__main__":
         print("Usage: python merge_fonts.py <bengali_font.ttf> <english_font.ttf> <output_font.ttf>")
         sys.exit(1)
     
-    merge_fonts(sys.argv[1], sys.argv[2], sys.argv[3]
+    merge_fonts(sys.argv[1], sys.argv[2], sys.argv[3])  # FIXED: Added missing ')'
