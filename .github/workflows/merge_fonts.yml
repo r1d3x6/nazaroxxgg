@@ -1,0 +1,34 @@
+name: Merge Fonts
+
+on:
+  workflow_dispatch:  # Manually trigger
+  push:
+    branches: [ main ]
+    paths: [ 'fonts/**' ]  # Run only if font files change
+
+jobs:
+  merge-fonts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install fontTools
+        run: pip install fonttools
+
+      - name: Run font merger script
+        run: |
+          python merge_fonts.py \
+            fonts/Adorsholipi.ttf \
+            fonts/TimesNewRoman.ttf \
+            fonts/AdorshoTimesMerged.ttf
+
+      - name: Upload merged font
+        uses: actions/upload-artifact@v3
+        with:
+          name: merged-font
+          path: fonts/AdorshoTimesMerged.ttf
